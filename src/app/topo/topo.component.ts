@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable, Subject, of } from 'rxjs';
-import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { switchMap, debounceTime, distinctUntilChanged, catchError } from 'rxjs/operators';
 
 import { OfertasService } from '../ofertas.service';
 
@@ -35,6 +35,10 @@ export class TopoComponent implements OnInit {
         }
         console.log('requisição para api');
         return this.ofertasService.pesquisaOfertas(termoDaBusca);
+      }),
+      catchError((erro: any) => {
+        console.log(erro);
+        return of<Oferta[]>([]);
       })
     );
     this.ofertas.subscribe((ofertas: Oferta[]) => {
