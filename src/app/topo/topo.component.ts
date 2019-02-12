@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
+import { Observable, Subject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 import { OfertasService } from '../ofertas.service';
-import { Observable } from 'rxjs';
 
 import { Oferta } from '../shared/oferta.model';
 
@@ -15,28 +18,26 @@ import { Oferta } from '../shared/oferta.model';
 export class TopoComponent implements OnInit {
 
   public ofertas: Observable<Oferta[]>;
+  private subjectPesquisa: Subject<string> = new Subject<string>();
 
   constructor(
     private ofertasService: OfertasService
   ) { }
 
   ngOnInit() {
+    this.ofertas = this.subjectPesquisa.pipe(
+      switchMap((termoDaBusca: string) => {
+        console.log('requisição para api');
+        return this.ofertasService.pesquisaOfertas(termoDaBusca);
+      })
+    );
+    this.ofertas.subscribe((ofertas: Oferta[]) => {
+      console.log(ofertas);
+    });
   }
 
   public pesquisa(termoDaBusca: string): void {
-    // console.log(termoDaBusca);
-    this.ofertas = this.ofertasService.pesquisaOfertas(termoDaBusca);
-    // console.log(this.ofertas);
-    this.ofertas.subscribe(
-      (ofertas: Oferta[]) => {
-        console.log(ofertas);
-      },
-      (erro: any) => {
-        console.error('Erro na pesquisa: status ' + erro.status);
-      },
-      () => {
-        console.log('Fluxo de Eventos Completo');
-      }
-    );
+    console.log('keyup caracter: ', termoDaBusca);
+    this.subjectPesquisa.next(termoDaBusca);
   }
 }
