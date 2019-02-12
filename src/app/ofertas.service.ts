@@ -47,6 +47,7 @@ export class OfertasService {
             .then((resposta: string[]) => resposta.shift()['descricao']);
     }
 
+    // Stackoverflow fix
     public pesquisaOfertas(termo: string): Observable<Oferta[]> {
         return this.http.get<Oferta[]>(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
             .pipe(
