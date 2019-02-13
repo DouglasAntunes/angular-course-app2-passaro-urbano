@@ -18,7 +18,6 @@ import { Oferta } from '../shared/oferta.model';
 export class TopoComponent implements OnInit {
 
   public ofertas: Observable<Oferta[]>;
-  public ofertas2: Oferta[];
   private subjectPesquisa: Subject<string> = new Subject<string>();
 
   constructor(
@@ -34,22 +33,18 @@ export class TopoComponent implements OnInit {
           // retornar um observable de array de ofertas vazio
           return of<Oferta[]>([]);
         }
-        console.log('requisição para api');
+        // console.log('requisição para api');
         return this.ofertasService.pesquisaOfertas(termoDaBusca);
       }),
       catchError((erro: any) => {
-        console.log(erro);
+        // console.log(erro);
         return of<Oferta[]>([]);
       })
     );
-    this.ofertas.subscribe((ofertas: Oferta[]) => {
-      console.log(ofertas);
-      this.ofertas2 = ofertas;
-    });
   }
 
   public pesquisa(termoDaBusca: string): void {
-    console.log('keyup caracter: ', termoDaBusca);
+    // console.log('keyup caracter: ', termoDaBusca);
     this.subjectPesquisa.next(termoDaBusca);
   }
 }
