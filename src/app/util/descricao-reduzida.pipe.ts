@@ -5,9 +5,9 @@ import { PipeTransform, Pipe } from '@angular/core';
 })
 export class DescricaoReduzida implements PipeTransform {
 
-    transform(texto: string): string {
-        if(texto.length > 15) {
-            return texto.substr(0, 15).concat('... ');
+    transform(texto: string, truncarEm: number, iniciaEm: number): string {
+        if(texto.length > truncarEm) {
+            return texto.substr(iniciaEm, truncarEm).concat('... ');
         }
         return texto;
     }
