@@ -47,4 +47,8 @@ export class TopoComponent implements OnInit {
     // console.log('keyup caracter: ', termoDaBusca);
     this.subjectPesquisa.next(termoDaBusca);
   }
+
+  public limpaPesquisa(): void {
+    this.subjectPesquisa.next('');
+  }
 }
