@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { OrdemCompraService } from '../ordem-compra.service';
+import { Pedido } from '../shared/pedido.model';
 
 @Component({
   selector: 'app-ordem-compra',
@@ -11,6 +12,8 @@ import { OrdemCompraService } from '../ordem-compra.service';
   ]
 })
 export class OrdemCompraComponent implements OnInit {
+
+  public pedido: Pedido = new Pedido('', '', '', '');
 
   public endereco: string = '';
   public numero: string = '';
@@ -37,7 +40,6 @@ export class OrdemCompraComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.ordemCompraService.efetivarCompra();
   }
 
   public atualizaEndereco(endereco: string): void {
@@ -103,6 +105,16 @@ export class OrdemCompraComponent implements OnInit {
     } else {
       this.formEstado = 'disabled';
     }
+  }
+
+  public confirmarCompra(): void {
+    this.pedido.endereco = this.endereco;
+    this.pedido.numero = this.numero;
+    this.pedido.complemento = this.complemento;
+    this.pedido.formaPagamento = this.formaPagamento;
+
+    this.ordemCompraService.efetivarCompra(this.pedido)
+      .subscribe();
   }
 
 }
