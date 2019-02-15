@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="ordem-compra" *ngIf="idPedidoCompra === undefined">
+    <div class="ordem-compra">
       <form novalidate>
       
         <h5>Sua Compra</h5>
@@ -70,23 +70,13 @@
   
           <div class="form-group col-md-6">
             <input type="text"
-              class="form-control {{ enderecoEstadoPrimitivo ? '' : (enderecoValido === true ? 'is-valid' : 'is-invalid') }}"
+              class="form-control is-invalid"
               placeholder="Endereço"
               autocomplete="off"
               minlength="5"
               required
-              [value]="endereco"
-              #inputEndereco
-              (input)="atualizaEndereco(inputEndereco.value)"
             >
-            <div *ngIf="enderecoEstadoPrimitivo === false">
-              <div *ngIf="enderecoValido; else msgEnderecoInvalido">
-                <small class="form-text text-success">Ok</small>
-              </div>
-              <ng-template #msgEnderecoInvalido>
-                <small class="form-text text-danger">Endereço inválido</small>
-              </ng-template>
-            </div>
+            <small class="form-text text-danger">Endereço inválido</small>
           </div>
   
           <div class="form-group col-md-2">
@@ -96,32 +86,17 @@
               autocomplete="off"
               minlength="1"
               required
-              [value]="numero"
-              #inputNumero
-              (input)="atualizaNumero(inputNumero.value)"
             >
-            <div *ngIf="numeroEstadoPrimitivo === false">
-              <div *ngIf="numeroValido; else msgNumeroInvalido">
-                <small class="form-text text-success">Ok</small>
-              </div>
-              <ng-template #msgNumeroInvalido>
-                <small class="form-text text-danger">Número inválido</small>
-              </ng-template>
-            </div>
+            <small class="form-text text-success">Ok</small>
           </div>
   
           <div class="form-group col-md-4">
             <input type="text"
-              class="form-control {{ complementoEstadoPrimitivo ? '' : (complementoValido === true ? 'is-valid' : '') }}"
+              class="form-control"
               placeholder="Complemento"
               autocomplete="off"
-              [value]="complemento"
-              #inputComplemento
-              (input)="atualizaComplemento(inputComplemento.value)"
             >
-            <div *ngIf="complementoEstadoPrimitivo === false && complementoValido">
-              <small class="form-text text-success">Ok</small>
-            </div>
+            <small class="form-text text-success">Ok</small>
           </div>
   
         </div>
@@ -134,30 +109,19 @@
             
           <div class="form-group col-md-3">
             <select
-              class="form-control {{ formaPagamentoEstadoPrimitivo ? '' : (formaPagamentoValido === true ? 'is-valid' : 'is-invalid') }}"
-              #selectFormaPagamento
-              (change)="atualizaFormaPagamento(selectFormaPagamento.value)"
+              class="form-control is-invalid"
             >
               <option value="">Selecione uma opção</option>
               <option value="dinheiro" selected="{{ formaPagamento === 'dinheiro' ? 'selected' : '' }}">Dinheiro</option>
               <option value="debito" selected="{{ formaPagamento === 'debito' ? 'selected' : '' }}">Débito</option>
             </select>
-            <div *ngIf="formaPagamentoEstadoPrimitivo === false">
-              <div *ngIf="formaPagamentoValido; else msgFormaPagamentoInvalido">
-                <small class="form-text text-success">Ok</small>
-              </div>
-              <ng-template #msgFormaPagamentoInvalido>
-                <small class="form-text text-danger">Selecione uma forma de pagamento</small>
-              </ng-template>
-            </div>
+            <small class="form-text text-danger">Selecione uma forma de pagamento</small>
           </div>
         </div>
   
         <hr />
         <button type="button"
           class="btn btn-primary btn-lg"
-          [disabled]="formEstado"
-          (click)="confirmarCompra()"
         >Confirmar compra</button>
       </form>
     </div>
