@@ -62,7 +62,9 @@
         </div>
         <br />
   
-        <pre>{{ formulario.value | json }}</pre>
+        <pre>Valido = {{ formulario.valid | json }}</pre>
+        <pre>Invalido = {{ formulario.invalid | json }}</pre>
+        <pre>JSON = {{ formulario.value | json }}</pre>
         <h5>Dados de entrega</h5>
         <hr />
   
@@ -71,27 +73,33 @@
           <div class="form-group col-md-6">
             <input type="text"
               name="endereco"
-              class="form-control is-invalid"
+              class="form-control"
               placeholder="Endereço"
               autocomplete="off"
-              minlength="5"
               required
+              minlength="3"
+              maxlength="120"
               ngModel
+              #inputEndereco="ngModel"
             >
-            <small class="form-text text-danger">Endereço inválido</small>
+            <small *ngIf="inputEndereco.valid && inputEndereco.touched" class="form-text text-success">Ok</small>
+            <small *ngIf="inputEndereco.invalid && inputEndereco.touched" class="form-text text-danger">Endereço inválido</small>
           </div>
   
           <div class="form-group col-md-2">
             <input type="text"
               name="numero"
-              class="form-control {{ numeroEstadoPrimitivo ? '' : (numeroValido === true ? 'is-valid' : 'is-invalid') }}"
+              class="form-control"
               placeholder="Número"
               autocomplete="off"
-              minlength="1"
               required
+              minlength="1"
+              maxlength="20"
               ngModel
+              #inputNumero="ngModel"
             >
-            <small class="form-text text-success">Ok</small>
+            <small *ngIf="inputNumero.valid && inputNumero.touched" class="form-text text-success">Ok</small>
+            <small *ngIf="inputNumero.invalid && inputNumero.touched" class="form-text text-danger">Número inválido</small>
           </div>
   
           <div class="form-group col-md-4">
@@ -101,8 +109,9 @@
               placeholder="Complemento"
               autocomplete="off"
               ngModel
+              #inputComplemento="ngModel"
             >
-            <small class="form-text text-success">Ok</small>
+            <small *ngIf="inputComplemento.valid && inputComplemento.touched" class="form-text text-success">Ok</small>
           </div>
   
         </div>
@@ -116,14 +125,17 @@
           <div class="form-group col-md-3">
             <select
               name="formaPagamento"
-              class="form-control is-invalid"
+              class="form-control"
+              required
               ngModel
+              #selectFormaPagamento="ngModel"
             >
               <option value="">Selecione uma opção</option>
               <option value="dinheiro">Dinheiro</option>
               <option value="debito">Débito</option>
             </select>
-            <small class="form-text text-danger">Selecione uma forma de pagamento</small>
+            <small *ngIf="selectFormaPagamento.valid && selectFormaPagamento.touched" class="form-text text-success">Ok</small>
+            <small *ngIf="selectFormaPagamento.invalid && selectFormaPagamento.touched" class="form-text text-danger">Selecione uma forma de pagamento</small>
           </div>
         </div>
   
