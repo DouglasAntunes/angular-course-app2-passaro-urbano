@@ -24,8 +24,9 @@ export class OrdemCompraService {
                 'Content-Type': 'application/json'
             }) }
         ).pipe(
-            map((resposta: HttpResponseBase) => {
-                console.log(resposta);
+            map((resposta: any) => {
+                // console.log(resposta);
+                return resposta.id;
             })
         );
     }

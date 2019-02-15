@@ -14,6 +14,7 @@ import { Pedido } from '../shared/pedido.model';
 export class OrdemCompraComponent implements OnInit {
 
   public pedido: Pedido = new Pedido('', '', '', '');
+  public idPedidoCompra: number;
 
   public endereco: string = '';
   public numero: string = '';
@@ -114,7 +115,12 @@ export class OrdemCompraComponent implements OnInit {
     this.pedido.formaPagamento = this.formaPagamento;
 
     this.ordemCompraService.efetivarCompra(this.pedido)
-      .subscribe();
+      .subscribe(
+        (resposta: any) => {
+          // console.log(resposta);
+          this.idPedidoCompra = resposta;
+        }
+      );
   }
 
 }
