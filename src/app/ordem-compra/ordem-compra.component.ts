@@ -24,8 +24,20 @@ export class OrdemCompraComponent implements OnInit {
   ngOnInit() {
   }
 
-  public confirmarCompra(formulario: NgForm): void {
-    console.log(this.formulario);
+  public confirmarCompra(): void {
+    // console.log(this.formulario.value);
+    let pedido: Pedido = new Pedido(
+      this.formulario.value.endereco,
+      this.formulario.value.numero,
+      this.formulario.value.complemento,
+      this.formulario.value.formaPagamento
+    );
+    this.ordemCompraService.efetivarCompra(pedido)
+      .subscribe(
+        (idPedido: number) => {
+          console.log(idPedido);
+        }
+      );
   }
 
 }
