@@ -111,11 +111,12 @@
     "variable-name": false,
     "whitespace": [
       true,
-      "check-branch",
+      // "check-branch",
       "check-decl",
       "check-operator",
       "check-separator",
-      "check-type"
+      "check-type",
+      "check-preblock"
     ],
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
