@@ -51,7 +51,7 @@ export class OrdemCompraComponent implements OnInit {
       this.ordemCompraService.efetivarCompra(pedido)
         .subscribe(
           (idDoPedido: number) => {
-            console.log(idDoPedido);
+            // console.log(idDoPedido);
             this.idPedidoCompra = idDoPedido;
           }
         );
