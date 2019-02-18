@@ -44,8 +44,6 @@ export class OfertaComponent implements OnInit, OnDestroy {
       });
     });
 
-    console.log(this.carrinhoService.exibirItens());
-
     // this.ofertasService.getOfertasPorId(id)
     //   .then((oferta: Oferta) => {
     //     this.oferta = oferta;
@@ -96,6 +94,12 @@ export class OfertaComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // this.tempoObservableSubscription.unsubscribe();
     // this.meuObservableTesteSubscription.unsubscribe();
+  }
+
+  public adicionarItemCarrinho(): void {
+    if(this.oferta !== undefined) {
+      this.carrinhoService.incluirItem(this.oferta);
+    }
   }
 
 }
