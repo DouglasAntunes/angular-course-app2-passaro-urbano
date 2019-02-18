@@ -10,19 +10,22 @@ import { HomeComponent } from './home/home.component';
 import { RodapeComponent } from './rodape/rodape.component';
 import { RestaurantesComponent } from './restaurantes/restaurantes.component';
 import { DiversaoComponent } from './diversao/diversao.component';
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 
-import { ROUTES } from './app.routes';
 import { OfertaComponent } from './oferta/oferta.component';
 import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
 import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 
+
+import { ROUTES } from './app.routes';
 import { DescricaoReduzida } from './util/descricao-reduzida.pipe';
-import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra-sucesso.component';
 registerLocaleData(localePt);
+
+import { CarrinhoService } from './carrinho.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ registerLocaleData(localePt);
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'pt'}
+    {provide: LOCALE_ID, useValue: 'pt'},
+    CarrinhoService // ou {provide: CarrinhoService, useValue: CarrinhoService}
   ],
   bootstrap: [AppComponent]
 })

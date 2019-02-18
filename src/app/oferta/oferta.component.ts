@@ -4,7 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 // import { Observable, interval, Observer, Subscription } from 'rxjs';
 
 import { OfertasService } from '../ofertas.service';
-import CarrinhoService from '../carrinho.service';
+import { CarrinhoService } from '../carrinho.service';
 
 import { Oferta } from '../shared/oferta.model';
 
@@ -13,8 +13,7 @@ import { Oferta } from '../shared/oferta.model';
   templateUrl: './oferta.component.html',
   styleUrls: ['./oferta.component.css'],
   providers: [
-    OfertasService,
-    CarrinhoService
+    OfertasService
   ]
 })
 export class OfertaComponent implements OnInit, OnDestroy {
@@ -99,6 +98,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
   public adicionarItemCarrinho(): void {
     if(this.oferta !== undefined) {
       this.carrinhoService.incluirItem(this.oferta);
+      console.log(this.carrinhoService.exibirItens());
     }
   }
 

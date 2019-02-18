@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { OrdemCompraService } from '../ordem-compra.service';
-import CarrinhoService from '../carrinho.service';
+import { CarrinhoService } from '../carrinho.service';
 
 import { Pedido } from '../shared/pedido.model';
 
@@ -11,8 +11,7 @@ import { Pedido } from '../shared/pedido.model';
   templateUrl: './ordem-compra.component.html',
   styleUrls: ['./ordem-compra.component.css'],
   providers: [
-    OrdemCompraService,
-    CarrinhoService
+    OrdemCompraService
   ]
 })
 export class OrdemCompraComponent implements OnInit {
