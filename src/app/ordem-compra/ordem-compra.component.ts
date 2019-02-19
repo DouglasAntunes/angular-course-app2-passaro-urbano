@@ -63,6 +63,7 @@ export class OrdemCompraComponent implements OnInit {
           .subscribe( (idDoPedido: number) => {
             // console.log(idDoPedido);
             this.idPedidoCompra = idDoPedido;
+            this.carrinhoService.limparCarrinho();
           }
         );
       }

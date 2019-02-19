@@ -36,7 +36,7 @@ class CarrinhoService {
         return total;
     }
 
-    adicionarQuantidade(itemCarrinho: ItemCarrinho): void {
+    public adicionarQuantidade(itemCarrinho: ItemCarrinho): void {
         // console.log(itemCarrinho);
         // incrementar quantidade
         const itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.id === itemCarrinho.id);
@@ -45,7 +45,7 @@ class CarrinhoService {
         }
     }
 
-    subtrairQuantidade(itemCarrinho: ItemCarrinho): void {
+    public subtrairQuantidade(itemCarrinho: ItemCarrinho): void {
         // console.log(itemCarrinho);
         // decrementar quantidade
         const itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.id === itemCarrinho.id);
@@ -56,6 +56,10 @@ class CarrinhoService {
                 this.itens.splice(this.itens.indexOf(itemCarrinhoEncontrado), 1);
             }
         }
+    }
+
+    public limparCarrinho(): void {
+        this.itens = [];
     }
 }
 
