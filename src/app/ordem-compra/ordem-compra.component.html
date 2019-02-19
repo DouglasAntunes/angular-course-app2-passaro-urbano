@@ -4,7 +4,7 @@
       
         <h5>Sua Compra</h5>
         <hr />
-        <div *ngIf="itensCarrinho.length > 0; else carrinhoVazio">
+        <div *ngIf="this.carrinhoService.exibirItens().length > 0; else carrinhoVazio">
           <div class="div" *ngFor="let item of itensCarrinho">
             <div class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
               <div class="form-group col-sm-1">
